@@ -1,0 +1,13 @@
+streamlit
+validators
+python-dotenv
+langchain
+langchain-community
+langchain-chroma
+langchain-groq
+langchain-huggingface
+chromadb
+unstructured
+groq
+sentence-transformers
+pysqlite3-binary
