@@ -7,16 +7,12 @@ except ImportError:
 
 from uuid import uuid4
 from pathlib import Path
-from langchain.chains.retrieval_qa.base import RetrievalQA
+from langchain.chains import RetrievalQAWithSourcesChain 
 from langchain_community.document_loaders import UnstructuredURLLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter 
 from langchain_chroma import Chroma 
 from langchain_groq import ChatGroq
-from langchain_huggingface.embeddings import HuggingFaceEmbeddings
-from langchain.chains import create_retrieval_chain
-from langchain.chains.combine_documents import create_stuff_documents_chain
-from langchain.prompts import ChatPromptTemplate
-
+from langchain_huggingface.embeddings import HuggingFaceEmbeddings 
 
 
 
@@ -75,32 +71,18 @@ def process_urls(urls):
     yield "Add chunks to vector database...✅"
     uuids = [str(uuid4()) for _ in range(len(docs))]
     vector_store.add_documents(
-        docs, 
-        ids=uuids
+        docs, ids=uuids
     )
 
     yield "Done adding docs to vector database...✅"
 
 def generate_answer(query):
     if not vector_store:
-        raise RuntimeError("Vector database is not initialized")
+        raise RuntimeError("Vector database is not initialized ")
 
-    # Build the document combination chain (equivalent to what RetrievalQAWithSourcesChain did)
-    prompt = ChatPromptTemplate.from_template(
-        "Use the following context to answer the question.\n\nContext:\n{context}\n\nQuestion: {input}"
-    )
-    combine_docs_chain = create_stuff_documents_chain(llm, prompt)
+    chain = RetrievalQAWithSourcesChain.from_llm(llm=llm, retriever=vector_store.as_retriever())
+    result = chain.invoke({"question": query}, return_only_outputs=True)
+    sources = result.get("sources", "")
 
-    # Replace the deprecated chain
-    chain = create_retrieval_chain(vector_store.as_retriever(), combine_docs_chain)
-
-    result = chain.invoke({"input": query})
-    answer = result.get("answer", result.get("output_text", ""))
-    # Extract sources as a list of strings (URLs or 'Unknown')
-    sources_list = [doc.metadata.get("source", "Unknown") for doc in result.get("context", [])]
-    # Return only the first source, or 'Unknown' if none
-    source = sources_list[0] if sources_list else "Unknown"
-    return answer, source
-
-    # ...existing code...
+    return result['answer'], sources
 
