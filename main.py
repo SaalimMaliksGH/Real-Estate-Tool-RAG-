@@ -103,13 +103,12 @@ query = st.text_input(
 if query:
     with st.spinner("🤖 Generating Answer..."):
         try:
-            answer, sources = generate_answer(query)
+            answer, source = generate_answer(query)
             st.header("📝 Answer:")
             st.write(answer)
 
-            if sources:
-                st.subheader("🔗 Sources:")
-                for source in sources.split("\n"):
-                    st.write(source)
+            if source:
+                st.subheader("🔗 Source:")
+                st.write(source)
         except Exception as e:
             st.error(f"😓 Error generating answer: {str(e)}")
