@@ -1,8 +1,8 @@
-# 🏠 Real Estate Research Tool
+# 📰 News Research Assistant
 
-A powerful AI-powered tool that answers real estate questions using Retrieval-Augmented Generation (RAG). This application scrapes content from provided URLs, indexes it in a vector database, and uses an LLM to generate accurate answers based on the retrieved information.
+A powerful AI-powered tool that answers news questions using Retrieval-Augmented Generation (RAG). This application scrapes content from provided URLs, indexes it in a vector database, and uses an LLM to generate accurate answers based on the retrieved information.
 
-![Real Estate Research Tool](https://github.com/Vraj-Data-Scientist/real-estate-assistant-using-RAG/blob/main/image.png?raw=true)
+![News Research Assistant](https://github.com/Vraj-Data-Scientist/real-estate-assistant-using-RAG/blob/main/image.png?raw=true)
 
 ## ✨ Features
 
@@ -77,7 +77,7 @@ streamlit run main.py
 
 - "What's the current 30-year mortgage rate?"
 - "What factors affect mortgage rates?"
-- "What are the latest trends in real estate?"
+- "What are the latest trends in the news?"
 - "What was the mortgage rate on March 20, 2025?"
 
 ## 🎨 Project Structure
@@ -141,4 +141,4 @@ For questions or feedback, please open an issue on GitHub.
 
 ---
 
-**Happy Real Estate Research! 🏡**
+**Happy News Research! 📰**

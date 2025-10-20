@@ -9,15 +9,15 @@ load_dotenv()
 # Add Open Graph metadata
 st.markdown(
     """
-    <meta property="og:title" content="Real Estate Research Tool">
-    <meta property="og:description" content="A tool to answer real estate questions using provided URLs.">
+    <meta property="og:title" content="News Research Assistant">
+    <meta property="og:description" content="A tool to answer news questions using provided URLs.">
     <meta property="og:image" content="https://github.com/Vraj-Data-Scientist/real-estate-assistant-using-RAG/blob/main/image.png?raw=true">
     <meta property="og:url" content="https://real-estate-assistant-using-rag-vraj-dobariya.streamlit.app/">
     """,
     unsafe_allow_html=True
 )
 
-st.title("🏠 Real Estate Research Tool")
+st.title("📰 News Research Assistant")
 
 # Predefined URLs
 PREDEFINED_URLS = {
@@ -53,16 +53,12 @@ with st.sidebar.expander("🔗 Enter Custom Website Links", expanded=False):
 # Expander with vibrant guidance
 with st.expander("ℹ️ How This Tool Helps You!", expanded=True):
     st.markdown("""
-    **Your Real Estate Assistant!** 🏡 I answer questions using the websites you provide. Here’s the scoop:
+    **Your News Research Assistant!** 📰 I answer questions using the websites you provide. Here's the scoop:
 
     **It Rocks When** ✅
     - Sites have clear, text-based info (e.g., mortgage rates 💰, current or historical).
     - *Examples*: "What’s the 30-year rate today?" or "What was it on March 20, 2025?"
-
-    **It Struggles When** 🚫
-    - Info is missing, in images 🖼️, tables, or behind logins 🔒.
-    - Sites like CNBC block access 🌐⛔.
-
+                
     **Pro Tips** 💡
     - Try the predefined URLs above to test instantly! 🔗
     - Use text-rich, public websites 📝.
@@ -96,7 +92,7 @@ if process_url_button:
 
 # Query input
 query = st.text_input(
-    "💬 Ask Your Real Estate Question",
+    "💬 Ask Your News Question",
     disabled=not st.session_state.urls_processed,
     placeholder="E.g., 'What’s the current 30-year mortgage rate?'"
 )
