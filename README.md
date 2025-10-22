@@ -2,7 +2,7 @@
 
 A powerful AI-powered tool that answers news questions using Retrieval-Augmented Generation (RAG). This application scrapes content from provided URLs, indexes it in a vector database, and uses an LLM to generate accurate answers based on the retrieved information.
 
-![News Research Assistant](https://github.com/Vraj-Data-Scientist/real-estate-assistant-using-RAG/blob/main/image.png?raw=true)
+
 
 ## ✨ Features
 
